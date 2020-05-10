@@ -17,3 +17,4 @@ log.txt
 .idea
 cmake-build-debug
 deps
+*.cbp

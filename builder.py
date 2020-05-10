@@ -9,6 +9,7 @@ import sys
 DEFAULT_HOST = '127.0.0.1'
 DEFAULT_PORT = 4080
 
+# TODO: THESE IDS HAVE BEEN MODIFIED!! Refer to item.h
 EMPTY = 0
 GRASS = 1
 SAND = 2

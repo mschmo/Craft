@@ -30,10 +30,12 @@ void create_world(int p, int q, world_func func, void *arg) {
                 if (SHOW_PLANTS) {
                     // grass
                     if (simplex2(-x * 0.1, z * 0.1, 4, 0.8, 2) > 0.6) {
-                        func(x, h, z, 17 * flag, arg);
+                        // TODO: Don't hard-code this 18. It's the item ID for "tall grass" so use the #define
+                        func(x, h, z, 18 * flag, arg);
                     }
                     // flowers
                     if (simplex2(x * 0.05, -z * 0.05, 4, 0.8, 2) > 0.7) {
+                        // TODO: Does this 18 need to be bumped to 19 since we increased the IDs of the flowers?
                         int w = 18 + simplex2(x * 0.1, z * 0.1, 4, 0.8, 2) * 7;
                         func(x, h, z, w * flag, arg);
                     }

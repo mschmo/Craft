@@ -18,6 +18,7 @@ const int items[] = {
     DARK_STONE,
     CHEST,
     LEAVES,
+    LAMP,
     TALL_GRASS,
     YELLOW_FLOWER,
     RED_FLOWER,
@@ -59,7 +60,8 @@ const int items[] = {
     COLOR_31
 };
 
-const int item_count = sizeof(items) / sizeof(int);
+// TODO: Learn what sizeof(int) does
+const int item_count = sizeof(items) / sizeof(int);  // sizeof(int) = 4 in my case
 
 const int blocks[256][6] = {
     // w => (left, right, top, bottom, front, back) tiles
@@ -80,14 +82,14 @@ const int blocks[256][6] = {
     {13, 13, 13, 13, 13, 13}, // 14 - chest
     {14, 14, 14, 14, 14, 14}, // 15 - leaves
     {15, 15, 15, 15, 15, 15}, // 16 - cloud
-    {0, 0, 0, 0, 0, 0}, // 17
-    {0, 0, 0, 0, 0, 0}, // 18
-    {0, 0, 0, 0, 0, 0}, // 19
-    {0, 0, 0, 0, 0, 0}, // 20
-    {0, 0, 0, 0, 0, 0}, // 21
-    {0, 0, 0, 0, 0, 0}, // 22
-    {0, 0, 0, 0, 0, 0}, // 23
-    {0, 0, 0, 0, 0, 0}, // 24
+    {64, 64, 64, 64, 64, 64}, // 17 - lamp
+    {0, 0, 0, 0, 0, 0}, // 18 - tall grass
+    {0, 0, 0, 0, 0, 0}, // 19 - flower
+    {0, 0, 0, 0, 0, 0}, // 20 - flower
+    {0, 0, 0, 0, 0, 0}, // 21 - flower
+    {0, 0, 0, 0, 0, 0}, // 22 - flower
+    {0, 0, 0, 0, 0, 0}, // 23 - flower
+    {0, 0, 0, 0, 0, 0}, // 24 - flower
     {0, 0, 0, 0, 0, 0}, // 25
     {0, 0, 0, 0, 0, 0}, // 26
     {0, 0, 0, 0, 0, 0}, // 27
@@ -131,14 +133,14 @@ const int blocks[256][6] = {
 
 const int plants[256] = {
     // w => tile
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // 0 - 16
-    48, // 17 - tall grass
-    49, // 18 - yellow flower
-    50, // 19 - red flower
-    51, // 20 - purple flower
-    52, // 21 - sun flower
-    53, // 22 - white flower
-    54, // 23 - blue flower
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // 0 - 17
+    48, // 18 - tall grass
+    49, // 19 - yellow flower
+    50, // 20 - red flower
+    51, // 21 - purple flower
+    52, // 22 - sun flower
+    53, // 23 - white flower
+    54, // 24 - blue flower
 };
 
 int is_plant(int w) {
