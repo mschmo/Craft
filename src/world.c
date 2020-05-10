@@ -1,4 +1,5 @@
 #include "config.h"
+#include "item.h"
 #include "noise.h"
 #include "world.h"
 
@@ -30,8 +31,7 @@ void create_world(int p, int q, world_func func, void *arg) {
                 if (SHOW_PLANTS) {
                     // grass
                     if (simplex2(-x * 0.1, z * 0.1, 4, 0.8, 2) > 0.6) {
-                        // TODO: Don't hard-code this 18. It's the item ID for "tall grass" so use the #define
-                        func(x, h, z, 18 * flag, arg);
+                        func(x, h, z, TALL_GRASS * flag, arg);
                     }
                     // flowers
                     if (simplex2(x * 0.05, -z * 0.05, 4, 0.8, 2) > 0.7) {
