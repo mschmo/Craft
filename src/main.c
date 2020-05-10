@@ -83,12 +83,12 @@ typedef struct {
 } Block;
 
 typedef struct {
-    float x;
-    float y;
-    float z;
-    float rx;
+    float x;    // X coordinate
+    float y;    // Y coordinate
+    float z;    // Z coordinate
+    float rx;   // Rotation?
     float ry;
-    float t;
+    float t;    // ???
 } State;
 
 typedef struct {
@@ -2434,11 +2434,11 @@ void handle_movement(double dt) {
                 vy = 1;
             }
             else if (dy == 0) {
-                dy = 8;
+                dy = 15; // Default was 8;
             }
         }
     }
-    float speed = g->flying ? 20 : 5;
+    float speed = g->flying ? 20 : 15; // Default was 5 for non-flying;
     int estimate = roundf(sqrtf(
         powf(vx * speed, 2) +
         powf(vy * speed + ABS(dy) * 2, 2) +
