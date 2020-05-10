@@ -199,3 +199,7 @@ int is_destructable(int w) {
             return 1;
     }
 }
+
+int is_light_source(int w) {
+    return w == LAMP;
+}

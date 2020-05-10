@@ -1572,6 +1572,10 @@ void set_block(int x, int y, int z, int w) {
             _set_block(p + dx, q + dz, x, y, z, -w, 1);
         }
     }
+    if (is_light_source(w)) {
+        // TODO: Does this get deleted from db when block is removed?
+        set_light(p, q, x, y, z, w);
+    }
     client_block(x, y, z, w);
 }
 

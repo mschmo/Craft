@@ -68,5 +68,6 @@ int is_plant(int w);
 int is_obstacle(int w);
 int is_transparent(int w);
 int is_destructable(int w);
+int is_light_source(int w);
 
 #endif
