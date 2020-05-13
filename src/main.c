@@ -164,11 +164,17 @@ float time_of_day() {
     if (g->day_length <= 0) {
         return 0.5;
     }
-    float t;
+    double t;
     t = glfwGetTime();
     t = t / g->day_length;
     t = t - (int)t;
     return t;
+}
+
+void set_time_of_day(int hour) {
+    double t;
+    t = g->day_length * ((double)hour / 24);
+    glfwSetTime(t);
 }
 
 float get_daylight() {
@@ -2028,7 +2034,7 @@ void parse_command(const char *buffer, int forward) {
     char server_addr[MAX_ADDR_LENGTH];
     int server_port = DEFAULT_PORT;
     char filename[MAX_PATH_LENGTH];
-    int radius, count, xc, yc, zc;
+    int new_time, radius, count, xc, yc, zc;
     if (sscanf(buffer, "/identity %128s %128s", username, token) == 2) {
         db_auth_set(username, token);
         add_message("Successfully imported identity token!");
@@ -2126,6 +2132,8 @@ void parse_command(const char *buffer, int forward) {
     }
     else if (sscanf(buffer, "/cylinder %d", &radius) == 1) {
         cylinder(&g->block0, &g->block1, radius, 0);
+    } else if (sscanf(buffer, "/time set %d", &new_time) == 1) {
+        set_time_of_day(new_time);
     }
     else if (forward) {
         client_talk(buffer);
@@ -2413,6 +2421,7 @@ void handle_mouse_input() {
 }
 
 void handle_movement(double dt) {
+    // dt: delta time
     static float dy = 0;
     State *s = &g->players->state;
     int sz = 0;
@@ -2438,11 +2447,11 @@ void handle_movement(double dt) {
                 vy = 1;
             }
             else if (dy == 0) {
-                dy = 8; // Default was 8;
+                dy = 8;
             }
         }
     }
-    float speed = g->flying ? 20 : 5; // Default was 5 for non-flying;
+    float speed = g->flying ? 20 : 5;
     int estimate = roundf(sqrtf(
         powf(vx * speed, 2) +
         powf(vy * speed + ABS(dy) * 2, 2) +
@@ -2776,6 +2785,7 @@ int main(int argc, char **argv) {
         }
 
         // BEGIN MAIN LOOP //
+        set_time_of_day(12);
         double previous = glfwGetTime();
         while (1) {
             // WINDOW SIZE AND SCALE //
